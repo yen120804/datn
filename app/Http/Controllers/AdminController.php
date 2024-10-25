@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Products;
 use App\Models\Category_products;
+use App\Models\Category_service;
 use App\Models\User;
 use App\Models\Order;
 use Illuminate\Http\Request;
@@ -205,102 +206,173 @@ class AdminController extends Controller
 // //     \/       ============================================================
 
 
-//     public function useradmin()
-//     {
-//         $allUser = User::orderBy('id','asc')->get();
-//         return view('admin.useradmin', compact('allUser'));
-//     }
-//     public function add_user(Request $request)
-//     {
-//         $validator = Validator::make($request->all(), [
-//             'name' => 'required|string|max:255',
-//             'email' => 'required|string|email|max:255|unique:users',
-//             'password' => 'required|string|min:8|confirmed',
-//         ]);
+    public function useradmin()
+    {
+        $allUser = User::orderBy('id','asc')->get();
+        return view('admin.useradmin', compact('allUser'));
+    }
+    public function add_user(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|min:8|confirmed',
+        ]);
 
-//         if ($validator->fails()) {
-//             return redirect()->back()->withErrors($validator)->withInput();
-//         }
-//         User::create([
-//             'name' => $request->name,
-//             'email' => $request->email,
-//             'password' => Hash::make($request->password),
-//             'role' => 1, // Đăng ký bình thường thì role là 0
-//         ]);
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+        User::create([
+            'name' => $request->name,
+            'phone' => 0, 
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'image' => 0, 
+            'role' => 1, 
+        ]);
 
-//         return redirect()->route('useradmin')->with('success', 'Người dùng thêm thành công.');
-//     }
-//     public function delete_user($id)
-//     {
-//         $user = User::find($id);
+        return redirect()->route('useradmin')->with('success', 'Người dùng thêm thành công.');
+    }
+    public function delete_user($id)
+    {
+        $user = User::find($id);
 
-//         if (!$user) {
-//             return redirect()->route('useradmin')->with('error', 'Không tìm thấy người dùng.');
-//         }
+        if (!$user) {
+            return redirect()->route('useradmin')->with('error', 'Không tìm thấy người dùng.');
+        }
 
-//         // Kiểm tra nếu người dùng hiện tại đang cố gắng tự xóa chính mình
-//         if (Auth::id() == $user->id) {
-//             return redirect()->route('useradmin')->with('error', 'Bạn không thể tự xóa tài khoản của chính mình.');
-//         }
+        // Kiểm tra nếu người dùng hiện tại đang cố gắng tự xóa chính mình
+        if (Auth::id() == $user->id) {
+            return redirect()->route('useradmin')->with('error', 'Bạn không thể tự xóa tài khoản của chính mình.');
+        }
 
-//         try {
-//             // Kiểm tra sự tồn tại của giỏ hàng
-//             if ($user->cart) {
-//                 // Xóa tất cả các mục trong giỏ hàng của người dùng
-//                 foreach ($user->cart->items as $item) {
-//                     $item->delete();
-//                 }
-//                 // Xóa giỏ hàng của người dùng
-//                 $user->cart()->delete();
-//             }
+        try {
+            // Kiểm tra sự tồn tại của giỏ hàng
+            if ($user->cart) {
+                // Xóa tất cả các mục trong giỏ hàng của người dùng
+                foreach ($user->cart->items as $item) {
+                    $item->delete();
+                }
+                // Xóa giỏ hàng của người dùng
+                $user->cart()->delete();
+            }
 
-//             // Xóa người dùng
-//             $user->delete();
+            // Xóa người dùng
+            $user->delete();
 
-//             return redirect()->route('useradmin')->with('success', 'Người dùng đã được xóa thành công.');
-//         } catch (\Exception $e) {
-//             return redirect()->route('useradmin')->with('error', 'Đã xảy ra lỗi khi xóa người dùng: ' . $e->getMessage());
-//         }
-//     }
-//     public function edit_user($id)
-//     {
-//         $user = User::find($id);
+            return redirect()->route('useradmin')->with('success', 'Người dùng đã được xóa thành công.');
+        } catch (\Exception $e) {
+            return redirect()->route('useradmin')->with('error', 'Đã xảy ra lỗi khi xóa người dùng: ' . $e->getMessage());
+        }
+    }
+    public function edit_user($id)
+    {
+        $user = User::find($id);
         
-//         if ($user) {
-//             return view('admin.updateuser', compact('user'));
-//         } else {
-//             return redirect()->route('useradmin')->with('error', 'Không tìm thấy người dùng.');
-//         }
-//     }
+        if ($user) {
+            return view('admin.updateuser', compact('user'));
+        } else {
+            return redirect()->route('useradmin')->with('error', 'Không tìm thấy người dùng.');
+        }
+    }
 
-//     public function update_user(Request $request, $id)
-//     {
-//         $request->validate([
-//             'name' => 'required|string|max:255',
-//             'role' => 'required|integer|in:0,1',
+    public function update_user(Request $request, $id)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'role' => 'required|integer|in:0,1',
            
-//         ]);
+        ]);
     
-//         $user = User::find($id);
-//         if ($user) {
-//             $data = $request->only(['name','role']);
+        $user = User::find($id);
+        if ($user) {
+            $data = $request->only(['name','role']);
            
     
-//             $user->update($data);
+            $user->update($data);
     
-//             return redirect()->route('useradmin')->with('success', 'Người dùng đã được cập nhật thành công.');
-//         } else {
-//             return redirect()->route('useradmin')->with('error', 'Không tìm thấy người dùng.');
-//         }
-//     }
+            return redirect()->route('useradmin')->with('success', 'Người dùng đã được cập nhật thành công.');
+        } else {
+            return redirect()->route('useradmin')->with('error', 'Không tìm thấy người dùng.');
+        }
+    }
+
+// //     ||       ============================================================
+// //     ||                              SERVICE CATEGORY 
+// //     \/       ============================================================
+
+    public function category_sv_admin()
+    {
+        $allService = Category_service::all();
+        return view('admin.category_sv_admin', compact('allService'));
+    }
+    public function add_category_sv(Request $request)
+    {
+        $request->validate([
+            'name' => 'required',
+        ]);
+
+        // Lưu sản phẩm vào cơ sở dữ liệu
+        $data = $request->only(['name']);
+
+        Category_service::create($data);
+
+        return redirect()->route('category_sv_admin')->with('success', 'Danh mục thêm thành công.');
+    }
+    public function delete_category_sv($id)
+    {
+        $allService = Category_service::find($id);
+    
+        if ($allService) {
+            // Kiểm tra xem danh mục có chứa sản phẩm nào không
+            if ($allService->products()->count() > 0) {
+                return redirect()->route('category_sv_admin')->with('error', 'Danh mục này vẫn còn sản phẩm, không thể xóa.');
+            } else {
+                $allService->delete();
+                return redirect()->route('category_sv_admin')->with('success', 'Danh mục đã được xóa thành công.');
+            }
+        } else {
+            return redirect()->route('category_sv_admin')->with('error', 'Không tìm thấy danh mục.');
+        }
+    }
+    
+    public function edit_category_sv($id)
+    {
+        $allService = Category_service::find($id);
+        
+        if ($allService) {
+            return view('admin.update_category_sv', compact('allService'));
+        } else {
+            return redirect()->route('category_sv_admin')->with('error', 'Không tìm thấy sản phẩm.');
+        }
+    }
+
+    public function update_category_sv(Request $request, $id)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+           
+        ]);
+    
+        $category = Category_service::find($id);
+        if ($category) {
+            $data = $request->only(['name', 'status']);
+           
+    
+            $category->update($data);
+    
+            return redirect()->route('category_sv_admin')->with('success', 'Danh mục đã được cập nhật thành công.');
+        } else {
+            return redirect()->route('category_sv_admin')->with('error', 'Không tìm thấy danh mục.');
+        }
+    }
 
 
-
-//     public function order()
-//     {
-//         $order = Order::orderBy('id','asc')->get();
-//         return view('admin.order',compact('order'));
-//     }
+    public function order()
+    {
+        $order = Order::orderBy('id','asc')->get();
+        return view('admin.order',compact('order'));
+    }
 
  }
 

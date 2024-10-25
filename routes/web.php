@@ -5,16 +5,39 @@ use App\Http\Controllers\AboutController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\UserController;
-
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\BlogController;
+use App\Http\Controllers\PackageController;
+use App\Http\Controllers\BookingController;
+use App\Http\Controllers\DetailController;
+use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\PaymentController;
 use Illuminate\Support\Facades\Route;
 
 // ========================== HOME =============================
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/about', [AboutController::class, 'about'])->name('about');
 Route::get('/products', [ProductsController::class, 'products'])->name('products');
+Route::get('/about', [AboutController::class, 'about'])->name('about');
+Route::get('/contact', [ContactController::class, 'contact'])->name('contact');
+Route::get('/blog', [BlogController::class, 'blog'])->name('blog');
+Route::get('/package', [PackageController::class, 'package'])->name('package');
+Route::get('/booking', [BookingController::class, 'booking'])->name('booking');
+Route::get('/detail', [DetailController::class, 'detail'])->name('detail');
 
 //cart
-Route::get('/cart', [CartController::class, 'cart'])->name('cart');
+Route::middleware(['auth'])->group(function () {
+    Route::get('/cart', [CartController::class, 'cart'])->name('cart');
+    Route::post('/cart/add/{id}', [CartController::class, 'addToCart'])->name('cart.add');
+    Route::patch('/cart/update/{id}', [CartController::class, 'updateCart'])->name('cart.update');
+    Route::delete('/cart/remove/{id}', [CartController::class, 'removeFromCart'])->name('cart.remove');
+});
+
+//checkout
+Route::get('/checkout', [CheckoutController::class, 'create'])->name('checkout.create');
+Route::post('/checkout', [CheckoutController::class, 'store'])->name('checkout.store');
+Route::post('/payment/process', [PaymentController::class, 'processPayment'])->name('payment.process');
+
 
 //user
 Route::get('register', [UserController::class, 'showRegisterForm'])->name('register');
@@ -42,10 +65,22 @@ Route::delete('categoryadmin/{id}', [AdminController::class, 'delete_category'])
 Route::get('/admin/category/{id}/edit', [AdminController::class, 'edit_category'])->name('edit_category');
 Route::put('/admin/category/{id}', [AdminController::class, 'update_category'])->name('update_category');
 
+//user
+Route::get('/useradmin', [AdminController::class, 'useradmin'])->name('useradmin');
+Route::post('/admin/useradmin', [AdminController::class, 'add_user'])->name('add_user');
+Route::delete('useradmin/{id}', [AdminController::class, 'delete_user'])->name('delete_user');
+Route::get('/admin/useradmin/{id}/edit', [AdminController::class, 'edit_user'])->name('edit_user');
+Route::put('/admin/useradmin/{id}', [AdminController::class, 'update_user'])->name('update_user');
 
+// category_sv
+Route::get('/category_sv_admin', [AdminController::class, 'category_sv_admin'])->name('category_sv_admin');
+Route::post('/admin/category_sv', [AdminController::class, 'add_category_sv'])->name('add_category_sv');
+Route::delete('category_sv_admin/{id}', [AdminController::class, 'delete_category_sv'])->name('delete_category_sv');
+Route::get('/admin/category_sv/{id}/edit', [AdminController::class, 'edit_category_sv'])->name('edit_category_sv');
+Route::put('/admin/category_sv/{id}', [AdminController::class, 'update_category_sv'])->name('update_category_sv');
 
-
-
+//order
+Route::get('/order', [AdminController::class, 'order'])->name('order');
 
 
 

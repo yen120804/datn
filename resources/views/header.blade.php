@@ -19,8 +19,8 @@
                         <li class="menu-item-has-children">
                             <a href="javascript:void(0);">Dịch vụ</a>
                             <ul class="sub-menu">
-                                <li><a href="service1.html">Bản giá</a></li>
-                                <li><a href="service2.html">Đặt lịch</a></li>
+                                <li><a href="{{ route('package') }}">Bản giá</a></li>
+                                <li><a href="{{ route( 'booking') }}">Đặt lịch</a></li>
 
                             </ul>
                         </li>
@@ -35,10 +35,10 @@
                             </ul>
                         </li>
                         <li class="">
-                            <a href="javascript:void(0);">Tin tức</a>
+                            <a href="{{ route('blog') }}">Tin tức</a>
 
                         </li>
-                        <li><a href="contact.html">Liên hệ</a></li>
+                        <li><a href="{{ route('contact') }}">Liên hệ</a></li>
                     </ul>
                 </nav>
             </div>

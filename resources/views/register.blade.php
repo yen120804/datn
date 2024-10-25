@@ -34,7 +34,7 @@
                 <div class="authWrap authLogin">
                     <h2 class="authTitle">Register</h2>
                     <form class="woocommerce-form-login needs-validation" action="{{ route('register') }}" method="POST"
-                        novalidate>
+                        novalidate onsubmit="return validateForm()">
                         @csrf
                         <div class="row">
                             <div class="col-sm-12">
@@ -50,7 +50,7 @@
                             <div class="col-sm-12">
                                 <input placeholder="Mật khẩu" type="password" id="password" name="password"
                                     class="form-control" required>
-                                <div class="invalid-feedback">Vui lòng nhập mật khẩu.</div>
+                                <div class="invalid-feedback" id="password-error">Vui lòng nhập mật khẩu.</div>
                             </div>
                             <div class="col-sm-12">
                                 <input placeholder="Nhập lại mật khẩu" type="password" id="password-confirm"

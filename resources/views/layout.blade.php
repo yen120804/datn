@@ -10,7 +10,9 @@
     <meta name="keywords"
         content="spa, beauty, care, girly, hair, health, beauty parlour, massage, skincare, saloon, make up, physiotherapy, salon, wellness, yoga website. Yoga & Meditation centers, Barbershop, Health & Wellness Centers, Medical, Physiotherapy, Cosmetic Treatment centers, ayurvedic treatments, pedicure, manicure procedures">
     <meta name="author" content="ThemeWar">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+        integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- Start Include All CSS -->
     <link rel="stylesheet" href="{{ asset('makeover/css/bootstrap.css')}}" />
     <link rel="stylesheet" href="{{ asset('makeover/css/owl.theme.default.min.css')}}" />
@@ -95,27 +97,44 @@
 
     <script src="{{ asset('makeover/js/theme.js')}}"></script>
     <!-- End Include All JS -->
-     <script>
+    <script>
         // Example starter JavaScript for disabling form submissions if there are invalid fields
-(function () {
-    'use strict';
-    window.addEventListener('load', function () {
-        // Fetch all the forms we want to apply custom Bootstrap validation styles to
-        var forms = document.getElementsByClassName('needs-validation');
-        // Loop over them and prevent submission
-        var validation = Array.prototype.filter.call(forms, function (form) {
-            form.addEventListener('submit', function (event) {
-                if (form.checkValidity() === false) {
-                    event.preventDefault();
-                    event.stopPropagation();
-                }
-                form.classList.add('was-validated');
+        (function () {
+            'use strict';
+            window.addEventListener('load', function () {
+                // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                var forms = document.getElementsByClassName('needs-validation');
+                // Loop over them and prevent submission
+                var validation = Array.prototype.filter.call(forms, function (form) {
+                    form.addEventListener('submit', function (event) {
+                        if (form.checkValidity() === false) {
+                            event.preventDefault();
+                            event.stopPropagation();
+                        }
+                        form.classList.add('was-validated');
+                    }, false);
+                });
             }, false);
-        });
-    }, false);
-})();
+        })();
+        function validateForm() {
+            var password = document.getElementById('password').value;
+            var passwordError = document.getElementById('password-error');
 
-     </script>
+            // Reset error message
+            passwordError.innerHTML = "Vui lòng nhập mật khẩu.";
+            document.getElementById('password').classList.remove('is-invalid');
+
+            // Check if password has at least 8 characters
+            if (password.length < 8) {
+                passwordError.innerHTML = "Mật khẩu phải có ít nhất 8 ký tự.";
+                document.getElementById('password').classList.add('is-invalid');
+                return false;  // Prevent form submission
+            }
+
+            return true;  // Allow form submission if validation passes
+        }
+
+    </script>
 </body>
 
 </html>

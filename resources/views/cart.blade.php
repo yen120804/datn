@@ -28,7 +28,7 @@
             <div class="col-lg-12">
                 <div class="woocommerce">
                     <!--  -->
-                    <form action="#" method="post" class="woocommerce-cart-form">
+                    <div class="woocommerce-cart-form">
                         <table class="shop_table">
                             <thead>
                                 <tr>
@@ -36,59 +36,93 @@
                                     <th class="product-price">Giá</th>
                                     <th class="product-quantity">Số lượng</th>
                                     <th class="product-subtotal">Tổng tiền</th>
-                                    <th class="product-remove">&nbsp;</th>
+                                    <th class="product-remove">Xóa</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($cart->items as $item)
-                                    <tr class="cart_item">
-                                        <td class="product-name" data-title="Product">
-                                            <img src="{{ asset('upload/' . $item->product->image) }}" alt="" width="200px">
-                                            {{ $item->product->name }}
-                                        </td>
-                                        <td class="product-price" data-title="Price">
-                                            <span class="woocommerce-Price-amount amount">
-                                                <bdi>{{ number_format($item->product->price, 0, ',', '.') }} VNĐ</bdi>
-                                            </span>
-                                        </td>
-                                        <td class="product-quantity" data-title="Quantity">
-                                            <form action="{{ route('cart.update', $item->id) }}" method="POST">
-                                                @csrf
-                                                @method('PATCH')
-                                                <div class="input-group input-group-sm">
-                                                    <button class="btn btn-outline-secondary" type="submit" name="decrement"
-                                                        value="1">-</button>
-                                                    <input type="number" name="quantity" value="{{ $item->quantity }}"
-                                                        class="form-control prd_quantity" min="1">
-                                                    <button class="btn btn-outline-secondary" type="submit" name="increment"
-                                                        value="1">+</button>
-                                                </div>
-                                            </form>
-                                        </td>
-                                        <td class="product-subtotal" data-title="Subtotal">
-                                            <span class="woocommerce-Price-amount amount">
-                                                <bdi>{{ number_format($item->product->price * $item->quantity, 0, ',', '.') }}
-                                                    VNĐ</bdi>
-                                            </span>
-                                        </td>
-                                        <td class="product-remove">
-                                            <form action="{{ route('cart.remove', $item->id) }}" method="POST">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button class="btn btn-danger" type="submit"><i
-                                                        class="fa-solid fa-trash-can"></i></button>
-                                            </form>
+                                @if($cart->items->isEmpty())
+                                    <tr>
+                                        <td colspan="5" class="text-center">
+                                            <p>Giỏ hàng của bạn hiện đang trống.</p>
                                         </td>
                                     </tr>
-                                @endforeach
-                            </tbody>
+                                @else
+                                    @foreach ($cart->items as $item)
+                                        <tr class="cart_item">
+                                            <td class="product-name" data-title="Product">
+                                                <img src="{{ asset('upload/' . $item->product->image) }}" alt="" width="200px">
+                                                {{ $item->product->name }}
+                                            </td>
+                                            <td class="product-price" data-title="Price">
+                                                <span class="woocommerce-Price-amount amount"><bdi>{{ number_format($item->product->price, 0, ',', '.') }}
+                                                        VNĐ</bdi></span>
+                                            </td>
+                                            <td class="product-quantity" data-title="Quantity"
+                                                style="width: 250px; padding: 5px; text-align: center;">
+                                                <div class="d-flex justify-content-center align-items-center">
+                                                    <form action="{{ route('cart.update', $item->id) }}" method="POST"
+                                                        style="margin: 0;">
+                                                        @csrf
+                                                        @method('PATCH')
+                                                        <input type="hidden" name="decrement" value="1">
+                                                        <button class="btn btn-outline-secondary" type="submit">-</button>
+                                                    </form>
 
+                                                    <div id="quantity-display-{{ $item->id }}" class="mx-2"
+                                                        style="width: 50px; text-align: center; font-size: 16px;">
+                                                        {{ $item->quantity }}
+                                                    </div>
+
+                                                    <form action="{{ route('cart.update', $item->id) }}" method="POST"
+                                                        style="margin: 0;">
+                                                        @csrf
+                                                        @method('PATCH')
+                                                        <input type="hidden" name="quantity" value="{{ $item->quantity + 1 }}">
+                                                        <button class="btn btn-outline-secondary" type="submit">+</button>
+                                                    </form>
+                                                </div>
+                                            </td>
+
+
+
+                                            <td class="product-subtotal" data-title="Subtotal">
+                                                <span class="woocommerce-Price-amount amount"><bdi>{{ number_format($item->product->price * $item->quantity, 0, ',', '.') }}
+                                                        VNĐ</bdi></span>
+                                            </td>
+                                            <td class="product-remove">
+                                                <a href="" class="">
+                                                    <form action="{{ route('cart.remove', $item->id) }}" method="POST">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button class="btn btn-danger" type="submit"><i
+                                                                class="fa-solid fa-trash-can"></i></button>
+                                                    </form>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="6" class="actions">
+                                                <div class="coupon">
+                                                    <label for="coupon_code">Coupon:</label>
+                                                    <input type="text" name="coupon_code" class="input-text" id="coupon_code"
+                                                        value="" placeholder="Coupon code">
+                                                    <button type="submit" class="button" name="apply_coupon"
+                                                        value="Apply coupon">Apply coupon</button>
+                                                </div>
+                                                <button type="submit" class="button update" name="update_cart"
+                                                    value="Update cart">Update cart</button>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                @endif
+                            </tbody>
                         </table>
-                    </form>
+                    </div>
+
                     <!--  -->
                     <div class="row">
                         <div class="col-7">
-                            <button class="btn border btn-primary"><a class="text-light" href="{{ route('home') }}">TIẾP
+                            <button class="btn border "><a class="" href="{{ route('home') }}">TIẾP
                                     TỤC MUA HÀNG</a></button>
                         </div>
                         <div class="col-5">
@@ -118,7 +152,7 @@
                                     <input type="hidden" name="price[]" value="{{ $item->product->price }}">
                                     <input type="hidden" name="quantity[]" value="{{ $item->quantity }}">
                                 @endforeach
-                                <button type="submit" class="btn btn-danger">THANH TOÁN</button>
+                                <button type="submit" class="btn ">THANH TOÁN</button>
                             </form>
                         </div>
                     </div>
