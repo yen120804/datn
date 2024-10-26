@@ -26,6 +26,12 @@ Route::get('/package', [PackageController::class, 'package'])->name('package');
 Route::get('/detail', [DetailController::class, 'detail'])->name('detail');
 
 //cart
+// Route::middleware(['auth'])->group(function () {
+//     Route::get('/cart', [CartController::class, 'cart'])->name('cart');
+//     Route::post('/cart/add/{id}', [CartController::class, 'addToCart'])->name('cart.add');
+//     Route::patch('/cart/update/{id}', [CartController::class, 'updateCart'])->name('cart.update');
+//     Route::delete('/cart/remove/{id}', [CartController::class, 'removeFromCart'])->name('cart.remove');
+// });
 Route::middleware(['auth'])->group(function () {
     Route::get('/cart', [CartController::class, 'cart'])->name('cart');
     Route::post('/cart/add/{id}', [CartController::class, 'addToCart'])->name('cart.add');
