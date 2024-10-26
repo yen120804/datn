@@ -20,7 +20,7 @@
                             <a href="javascript:void(0);">Dịch vụ</a>
                             <ul class="sub-menu">
                                 <li><a href="{{ route('package') }}">Bản giá</a></li>
-                                <li><a href="{{ route( 'booking') }}">Đặt lịch</a></li>
+                                <li><a href="{{ route('booking.index') }}">Đặt lịch</a></li>
 
                             </ul>
                         </li>

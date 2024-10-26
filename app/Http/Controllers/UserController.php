@@ -23,6 +23,7 @@ class UserController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8|confirmed',
+            'image' => 'default.jpg', // Gán giá trị mặc định
         ]);
     
         if ($validator->fails()) {
@@ -31,10 +32,10 @@ class UserController extends Controller
     
         User::create([
             'name' => $request->name,
-            'phone' => 0, 
+            'phone' => $request->phone, 
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'image' => 0, 
+            'image' => 'default.jpg',
             'role' => 0, // Đăng ký bình thường thì role là 0
         ]);
     

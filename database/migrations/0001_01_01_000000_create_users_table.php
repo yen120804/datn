@@ -14,9 +14,12 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('phone')->nullable(); 
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->string('image')->default('default.jpg'); // Giá trị mặc định là 'default.jpg'
+            $table->integer('role')->default(0); // 0 cho người dùng bình thường, 1 cho admin
             $table->rememberToken();
             $table->timestamps();
         });

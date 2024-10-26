@@ -43,6 +43,11 @@
                                 <div class="invalid-feedback">Vui lòng nhập tên người dùng.</div>
                             </div>
                             <div class="col-sm-12">
+                                <input placeholder="Số điện thoại" type="tel" id="phone" name="phone" value=""
+                                    class="form-control" required>
+                                <div class="invalid-feedback">Vui lòng nhập số điện thoại.</div>
+                            </div>
+                            <div class="col-sm-12">
                                 <input placeholder="Email của bạn" type="email" id="email" name="email" value=""
                                     class="form-control" required>
                                 <div class="invalid-feedback">Vui lòng nhập email hợp lệ.</div>

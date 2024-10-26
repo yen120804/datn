@@ -9,6 +9,7 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\PackageController;
 use App\Http\Controllers\BookingController;
+use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\DetailController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\PaymentController;
@@ -22,7 +23,6 @@ Route::get('/about', [AboutController::class, 'about'])->name('about');
 Route::get('/contact', [ContactController::class, 'contact'])->name('contact');
 Route::get('/blog', [BlogController::class, 'blog'])->name('blog');
 Route::get('/package', [PackageController::class, 'package'])->name('package');
-Route::get('/booking', [BookingController::class, 'booking'])->name('booking');
 Route::get('/detail', [DetailController::class, 'detail'])->name('detail');
 
 //cart
@@ -81,6 +81,14 @@ Route::put('/admin/category_sv/{id}', [AdminController::class, 'update_category_
 
 //order
 Route::get('/order', [AdminController::class, 'order'])->name('order');
+
+//booking
+
+
+// Route cho trang booking
+Route::get('/booking', [ServiceController::class, 'index'])->name('booking.index');
+Route::post('/select-package', [ServiceController::class, 'selectPackage'])->name('select.package');
+Route::post('/book-appointment', [BookingController::class, 'booking'])->name('book.appointment');
 
 
 

@@ -15,8 +15,7 @@ return new class extends Migration
             $table->id(); // Cột id tự động tăng
             $table->unsignedBigInteger('service_id'); // Cột khóa ngoại từ bảng services
             $table->unsignedBigInteger('user_id'); // Cột khóa ngoại từ bảng users
-            $table->time('appointment_time'); // Cột thời gian hẹn
-            $table->date('appointment_date'); // Cột ngày hẹn
+            $table->datetime('appointment_datetime'); // Cột ngày và giờ hẹn
             $table->string('status')->default('pending'); // Cột trạng thái, mặc định là "pending"
 
             // Thiết lập khóa ngoại cho service_id và user_id
