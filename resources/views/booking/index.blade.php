@@ -1,5 +1,5 @@
 @extends('layout')
-@section('titlepage',' Booking')
+@section('titlepage', 'Booking')
 @section('content')
 
 <!-- Begin:: Banner Section -->
@@ -34,9 +34,10 @@
                             <div class="appointment_form">
                                 <h3>Đặt lịch hẹn</h3>
                                 <p>Chúng tôi cam kết mang đến sự chăm sóc tận tình, giúp khách hàng cảm thấy thư giãn và hài lòng trong mỗi dịch vụ.</p>
+                                
+                                <!-- Form chọn dịch vụ -->
                                 <form action="{{ route('select.package') }}" method="POST" class="row">
                                     @csrf
-                                    <!-- Trường chọn dịch vụ -->
                                     <div class="input-field col-lg-12">
                                         <label for="service">Chọn Dịch Vụ:</label>
                                         <select name="service_id" required>
@@ -50,10 +51,11 @@
                                     </div>
                                 </form>
 
+                                <!-- Form đặt lịch hẹn -->
                                 @if(isset($packages))
                                 <form action="{{ route('book.appointment') }}" method="POST" class="row">
                                     @csrf
-                                    <input type="hidden" name="service_id" value="{{ $selectedService->id }}"> <!-- Trường ẩn cho service_id -->
+                                    <input type="hidden" name="service_id" value="{{ $selectedService->id }}"> 
                                     <div class="input-field col-lg-12">
                                         <label for="package">Chọn Gói Dịch Vụ:</label>
                                         <select name="package_id" required>
