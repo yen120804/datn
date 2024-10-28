@@ -1,6 +1,24 @@
 @extends('layout')
 @section('titlepage', ' Register')
 @section('content')
+<section class="page_banner">
+    <div class="layer_img move_anim animated">
+        <img src="makeover/images/bg/page_layer.png" alt="" />
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-5 offset-lg-1">
+                <h2 class="banner-title">Đăng ký</h2>
+                <p class="breadcrumbs"><a href="{{ route('home') }}">Home</a><span>/</span>Register</p>
+            </div>
+            <div class="col-lg-6 animated pnl">
+                <div class="page_layer">
+                    <img src="makeover/images/bg/banner_layer.png" alt="" />
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
 <!-- popup sidebar widget -->
 
@@ -13,7 +31,7 @@
         <div class="row">
             <div class="col-lg-5 offset-lg-1">
                 <h2 class="banner-title">Register</h2>
-                <p class="breadcrumbs"><a href="index.html">Home</a><span>/</span>Register</p>
+                <p class="breadcrumbs"><a href="{{ route('home') }}">Home</a><span>/</span>Register</p>
             </div>
             <div class="col-lg-6 animated pnl">
                 <div class="page_layer">

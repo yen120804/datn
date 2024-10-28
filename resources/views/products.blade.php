@@ -8,8 +8,8 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-5 offset-lg-1">
-                <h2 class="banner-title">Products</h2>
-                <p class="breadcrumbs"><a href="index.html">Home</a><span>/</span>Products</p>
+                <h2 class="banner-title">Sản phẩm</h2>
+                <p class="breadcrumbs"><a href="{{ route('home') }}">Home</a><span>/</span>Products</p>
             </div>
             <div class="col-lg-6 animated pnl">
                 <div class="page_layer">
@@ -28,7 +28,7 @@
             <div class="col-lg-9">
                 <div class="row shop_sort_count_row">
                     <div class="col-md-7">
-                        <p class="woocommerce-result-count">Showing 1–12 of 36 results</p>
+                        <p class="woocommerce-result-count">Tất cả sản phẩm</p>
                     </div>
                     <div class="col-md-5 text-right">
                         <form class="woocommerce-ordering" method="get">
@@ -52,17 +52,20 @@
                                         style="width: 300px; height: 200px; object-fit: cover;" />
 
                                     <div class="pi_01_actions">
-                                        <a href="javascript:void(0)"
-                                            onclick="document.getElementById('add-to-cart-form-{{ $item->id }}').submit()">
+                                        <a href="{{ route('detail', ['id' => $item->id]) }}"
+                                            onclick="event.preventDefault(); document.getElementById('add-to-cart-form-{{ $item->id }}').submit();">
                                             <i class="icofont-cart-alt"></i>
                                         </a>
-                                        <a href=""><i class="icofont-eye"></i></a>
+                                        <a href="{{ route('detail', ['id' => $item->id]) }}">
+                                            <i class="icofont-eye"></i>
+                                        </a>
                                     </div>
 
                                     <form id="add-to-cart-form-{{ $item->id }}" action="{{ route('cart.add', $item->id) }}"
                                         method="POST" style="display: none;">
                                         @csrf
                                     </form>
+
 
                                     <div class="prLabels">
                                         <p class="justin">New</p>
@@ -86,10 +89,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="make_pagination text-center">
-                            <span class="current">1</span>
-                            <a href="shop2.html">2</a>
-                            <a href="shop2.html">3</a>
-                            <a class="next" href="shop2.html"><i class="icofont-simple-right"></i></a>
+                            {{ $allProducts->links('pagination::bootstrap-5') }}
                         </div>
                     </div>
                 </div>

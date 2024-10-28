@@ -10,7 +10,7 @@ class ProductsController extends Controller
 {
     public function products()
     {
-        $allProducts = Products::with('category')->orderBy('name', 'asc')->paginate(15);
+        $allProducts = Products::with('category')->orderBy('name', 'asc')->paginate(9);
         $allCategories = Category_products::orderBy('name', 'asc')->get();
         return view('products', compact('allProducts', 'allCategories'));
     }
@@ -24,12 +24,12 @@ class ProductsController extends Controller
         return view('products', compact('allProducts', 'allCategories', 'currentCategory', 'categoryName'));
     }
 
-    // public function detail($id)
-    // {
-    //     $item = Products::with('category')->find($id);
-    //     $relatedProducts = Products::where('category_id', $item->category_id)->where('id', '!=', $id)->limit(4)->get();
-    //     return view('detail', compact('item', 'relatedProducts'));
-    // }
+    public function detail($id)
+    {
+        $item = Products::with('category')->find($id);
+        $relatedProducts = Products::where('category_id', $item->category_id)->where('id', '!=', $id)->limit(4)->get();
+        return view('detail', compact('item', 'relatedProducts'));
+    }
     // public function search(Request $request)
     // {
     //     $query = $request->input('query');

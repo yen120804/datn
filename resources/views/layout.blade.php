@@ -34,6 +34,8 @@
     <link rel="stylesheet" href="{{ asset('makeover/css/ignore_for_wp.css')}}" />
     <link rel="stylesheet" href="{{ asset('makeover/css/theme.css')}}" />
     <link rel="stylesheet" href="{{ asset('makeover/css/responsive.css')}}" />
+
+    <link rel="stylesheet" href="{{ asset('/css/profile.css')}}" />
     <!-- End Include All CSS -->
 
     <!-- Favicon Icon -->

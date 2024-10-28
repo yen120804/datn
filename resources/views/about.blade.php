@@ -13,8 +13,8 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-5 offset-lg-1">
-                        <h2 class="banner-title">About Us</h2>
-                        <p class="breadcrumbs"><a href="index.html">Home</a><span>/</span>About page</p>
+                        <h2 class="banner-title">Giới thiệu</h2>
+                        <p class="breadcrumbs"><a href="{{ route('home') }}">Home</a><span>/</span>About page</p>
                     </div>
                     <div class="col-lg-6 animated pnl">
                         <div class="page_layer">

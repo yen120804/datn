@@ -2,10 +2,29 @@
 @section('titlepage', 'Thanh toán')
 
 @section('content')
+<section class="page_banner">
+    <div class="layer_img move_anim animated">
+        <img src="makeover/images/bg/page_layer.png" alt="" />
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-5 offset-lg-1">
+                <h2 class="banner-title">Sản phẩm</h2>
+                <p class="breadcrumbs"><a href="{{ route('home') }}">Home</a><span>/</span>Products</p>
+            </div>
+            <div class="col-lg-6 animated pnl">
+                <div class="page_layer">
+                    <img src="makeover/images/bg/banner_layer.png" alt="" />
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 <div class="cartPage">
     <div class="container">
         <div class="row">
-            <div class="col-lg-12">
+            <div class="col-lg-2"></div>
+            <div class="col-lg-8">
                 <div class="woocommerce">
                     <form action="{{ route('checkout.store') }}" method="POST">
                         @csrf
@@ -68,6 +87,7 @@
                     </form>
                 </div>
             </div>
+            <div class="col-lg-2"></div>
         </div>
     </div>
     <style>

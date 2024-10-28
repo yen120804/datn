@@ -5,12 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\Order;
 use App\Models\Cart;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-
 
 class OrderController extends Controller
 {
-   
+
     public function show($id){
         $order = Order::with(['orderItems.product', 'user'])->findOrFail($id);
         $user = auth()->user();

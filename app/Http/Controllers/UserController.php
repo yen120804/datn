@@ -84,6 +84,56 @@ class UserController extends Controller
     function forgot(){
         return view('forgot');
     }
-    
+
+
+     public function profile(Request $request)
+    {
+        return view('profile');
+    }
+    public function edit_profile($id)
+    {
+        $profile = User::find($id);
+        
+        if ($profile) {
+            return view('updateprofile', compact('profile'));
+        } else {
+            return redirect()->route('profile')->with('error', 'Không tìm thấy .');
+        }
+    }
+    public function update_profile(Request $request, $id)
+{
+    $request->validate([
+        'name' => 'required|string|max:255',
+        'phone' => 'required|string|max:255',
+        'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+    ]);
+
+    $profile = User::find($id);
+
+    if ($profile) {
+        $data = $request->only(['name', 'phone']);
+
+        // Xử lý upload ảnh mới nếu có
+        if ($request->hasFile('image')) {
+            // Xóa ảnh cũ nếu tồn tại
+            if ($profile->image && file_exists(public_path('upload/' . $profile->image))) {
+                unlink(public_path('upload/' . $profile->image));
+            }
+
+            // Lưu ảnh mới
+            $image = $request->file('image');
+            $imageName = uniqid() . '_' . $image->getClientOriginalName();
+            $image->move(public_path('upload'), $imageName);
+            $data['image'] = $imageName;
+        }
+
+        $profile->update($data);
+
+        return redirect()->route('profile')->with('success', 'Cập nhật thành công.');
+    } else {
+        return redirect()->route('profile')->with('error', 'Không thành công.');
+    }
+}
+
     
 }

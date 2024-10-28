@@ -13,7 +13,7 @@
         <div class="row">
             <div class="col-lg-5 offset-lg-1">
                 <h2 class="banner-title">Login</h2>
-                <p class="breadcrumbs"><a href="index.html">Home</a><span>/</span>Login</p>
+                <p class="breadcrumbs"><a href="{{ route('home') }}">Home</a><span>/</span>Login</p>
             </div>
             <div class="col-lg-6 animated pnl">
                 <div class="page_layer">
@@ -32,7 +32,7 @@
             <div class="col-lg-3"></div>
             <div class="col-lg-6">
                 <div class="authWrap authLogin">
-                    <h2 class="authTitle">Login</h2>
+                    <h2 class="authTitle">Đăng nhập</h2>
                     <form class="woocommerce-form-login needs-validation" action="{{ route('login') }}" method="POST"
                         novalidate>
                         @csrf
