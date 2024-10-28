@@ -3,9 +3,7 @@
 @section('content')
 
 
-        <!-- popup sidebar widget -->
-
-        <!-- Begin:: Banner Section -->
+       
         <section class="page_banner">
             <div class="layer_img move_anim animated">
                 <img src="makeover/images/bg/page_layer.png" alt=""/>

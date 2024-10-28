@@ -370,8 +370,30 @@ class AdminController extends Controller
 
     public function order()
     {
-        $order = Order::orderBy('id','asc')->get();
-        return view('admin.order',compact('order'));
+        // Lấy danh sách đơn hàng và các trạng thái hiện có
+        $orders = Order::orderBy('id', 'asc')->get();
+        $statuses = [
+            1 => 'Chờ xác nhận',
+            2 => 'Đang chuẩn bị hàng',
+            3 => 'Đang được giao',
+            4 => 'Đơn hàng đã hoàn thành'
+        ];
+
+        return view('admin.order', compact('orders', 'statuses'));
+    }
+
+    // Hàm cập nhật trạng thái đơn hàng
+    public function updateStatus(Request $request, $orderId)
+    {
+        // Tìm đơn hàng theo ID
+        $order = Order::findOrFail($orderId);
+
+        // Cập nhật trạng thái
+        $order->status = $request->input('status');
+        $order->save();
+
+        // Chuyển hướng về trang đơn hàng với thông báo
+        return redirect()->route('admin.order')->with('success', 'Trạng thái đơn hàng đã được cập nhật!');
     }
 
  }

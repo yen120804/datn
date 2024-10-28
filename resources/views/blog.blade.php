@@ -21,9 +21,7 @@
                 </div>
             </div>
         </section>
-        <!-- End:: Banner Section -->
-
-  <!-- Begin:: Blog Section -->
+    
   <section class="blogPage">
             <div class="container">
                 <div class="row">

@@ -34,7 +34,7 @@
                     <button type="submit" class="nav-link btn btn-link logout-btn">Sửa thông tin</button>
                 </form>
             </div>
-            <!-- Phần thông tin cá nhân -->
+ 
             <div class="profile-info">
                 <div class="profile-section">
                     <label>Họ và tên:</label>
@@ -47,6 +47,9 @@
                 <div class="profile-section">
                     <label>Số điện thoại:</label>
                     <p>{{ Auth::user()->phone }}</p>
+                </div>
+                <div class="profile-section">
+                <a class="text-primary" href="{{ route('showbill') }}">Xem hóa đơn</a>
                 </div>
 
 

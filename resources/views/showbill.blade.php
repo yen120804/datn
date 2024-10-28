@@ -26,7 +26,6 @@
         <h1>Danh sách đơn hàng của bạn</h1>
         @foreach ($orders as $order)
             <div class="card">
-
                 <div class="card-header">Đơn hàng :{{ $order->madh }}</div>
                 <div class="card-body">
                     <table class="table table-striped table-bordered" style="border-radius: 10px; overflow: hidden;">

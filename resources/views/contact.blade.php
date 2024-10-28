@@ -21,9 +21,8 @@
                 </div>
             </div>
         </section>
-        <!-- End:: Banner Section -->
 
-  <!-- Begin:: Google Maps Section -->
+        
   <section class="commonSection">
             <div class="container">
                 <div class="row">
