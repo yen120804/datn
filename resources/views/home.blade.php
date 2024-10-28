@@ -720,23 +720,6 @@
             </div>
         </div>
     </section>
-    <!-- End:: Blog Section -->
 
-    <!-- Begin:: Instagram Section -->
-    <!-- <div class="my_instagram">
-        <a href="makeover/images/instagram/1.jpg" data-rel="lightcase:myCollection:slideshow" class="popup_img"><img
-                src="makeover/images/instagram/1.jpg" alt="instagram"></a>
-        <a href="makeover/images/instagram/2.jpg" data-rel="lightcase:myCollection:slideshow" class="popup_img"><img
-                src="makeover/images/instagram/2.jpg" alt="instagram"></a>
-        <a href="makeover/images/instagram/3.jpg" data-rel="lightcase:myCollection:slideshow" class="popup_img"><img
-                src="makeover/images/instagram/3.jpg" alt="instagram"></a>
-        <a href="makeover/images/instagram/4.jpg" data-rel="lightcase:myCollection:slideshow" class="popup_img"><img
-                src="makeover/images/instagram/4.jpg" alt="instagram"></a>
-        <a href="makeover/images/instagram/5.jpg" data-rel="lightcase:myCollection:slideshow" class="popup_img"><img
-                src="makeover/images/instagram/5.jpg" alt="instagram"></a>
-        <a href="makeover/images/instagram/6.jpg" data-rel="lightcase:myCollection:slideshow" class="popup_img"><img
-                src="makeover/images/instagram/6.jpg" alt="instagram"></a>
-    </div> -->
-    <!-- End:: Instagram Section -->
 
 @endsection

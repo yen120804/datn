@@ -20,6 +20,7 @@
         </div>
     </div>
 </section>
+
 <div class="cartPage">
     <div class="container">
         <div class="row">

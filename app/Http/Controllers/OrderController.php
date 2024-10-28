@@ -24,4 +24,5 @@ class OrderController extends Controller
         return view('showbill', compact('orders')); // Truyền collection các đơn hàng sang view showbill.blade.php
     }
    
+    
 }

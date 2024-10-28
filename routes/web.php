@@ -51,6 +51,9 @@ Route::post('logout', [UserController::class, 'logout'])->name('logout');
 Route::get('/profile', [UserController::class, 'profile'])->name('profile');
 Route::get('/profile/edit/{id}', [UserController::class, 'edit_profile'])->name('edit_profile');
 Route::put('/profile/update/{id}', [UserController::class, 'update_profile'])->name('update_profile');
+// Route::get('/forgot-password', [UserController::class, 'showForgotPasswordForm'])->name('password.request');
+// Route::post('/forgot-password', [UserController::class, 'sendResetLink'])->name('password.email');
+
 
 // ========================== ADMIN =============================
 Route::get('/admin', [AdminController::class, 'admin'])->name('admin');
@@ -85,7 +88,9 @@ Route::get('/admin/category_sv/{id}/edit', [AdminController::class, 'edit_catego
 Route::put('/admin/category_sv/{id}', [AdminController::class, 'update_category_sv'])->name('update_category_sv');
 
 //order
-Route::get('/order', [AdminController::class, 'order'])->name('order');
+Route::get('/admin/order', [AdminController::class, 'order'])->name('order');
+Route::patch('/admin/order/{orderId}', [AdminController::class, 'updateStatus'])->name('updateStatus');
+
 
 //booking
 

@@ -30,16 +30,7 @@ class ProductsController extends Controller
         $relatedProducts = Products::where('category_id', $item->category_id)->where('id', '!=', $id)->limit(4)->get();
         return view('detail', compact('item', 'relatedProducts'));
     }
-    // public function search(Request $request)
-    // {
-    //     $query = $request->input('query');
-    //     $products = Products::where('name', 'LIKE', "%$query%")->paginate(6);
-    //     return view('search', compact('products', 'query'));
-    // }
-    //     public function cart()
-    // {
-    //     return view('cart');
-    // }
+
 
 
 }

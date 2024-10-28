@@ -22,11 +22,6 @@
                 </div>
             </div>
         </section>
-        <!-- End:: Banner Section -->
-
-
-
-
 
      <!-- Begin:: Package Section -->
      <section class="commonSection packagegPage">

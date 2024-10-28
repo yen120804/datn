@@ -19,9 +19,7 @@
         </div>
     </div>
 </section>
-<!-- End:: Banner Section -->
 
-<!-- Begin:: Cart Section -->
 <section class="cartPage">
     <div class="container">
         <div class="row">

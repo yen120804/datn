@@ -24,7 +24,6 @@
 <div class="cartPage">
 <div class="container">
     <h1>Chi tiết đơn hàng #{{ $order->madh }}</h1>
- 
     <p>Người đặt hàng: {{ $order->name }}</p>
     <p>Email: {{ $order->email }}</p>
     <p>Số điện thoại: {{ $order->phone }}</p>

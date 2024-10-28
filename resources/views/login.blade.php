@@ -24,8 +24,7 @@
     </div>
 </section>
 <!-- End:: Banner Section -->
-
-<!-- Begin:: Account Section -->
+ 
 <section class="cartPage">
     <div class="container">
         <div class="row">
@@ -67,32 +66,7 @@
                 </div>
             </div>
             <div class="col-lg-3"></div>
-            <!-- <div class="col-lg-6">
-                        <div class="authWrap authLogin">
-                            <h2 class="authTitle">Register</h2>
-                            <form class="woocommerce-form-login" action="#" method="post">
-                                <div class="row">
-                                    <div class="col-sm-12">
-                                        <input placeholder="User Name *" type="text" name="email" value="">			
-                                    </div>
-                                    <div class="col-sm-12">
-                                        <input placeholder="Email Address *" type="email" name="email" value="">			
-                                    </div>
-                                    <div class="col-sm-12">
-                                        <input placeholder="Password *" type="password" name="password">
-                                    </div>
-                                    <div class="col-sm-12">
-                                        <input placeholder="Confirm Password *" type="password" name="confirm_password">
-                                    </div>
-                                    <div class="col-sm-12">
-                                        <button type="submit" class="woocommerce-button button woocommerce-form-login__submit mo_btn" name="login" value="Log in">
-                                            <i class="icofont-user-alt-7"></i>Register Now
-                                        </button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div> -->
+
         </div>
     </div>
 </section>

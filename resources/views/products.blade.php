@@ -19,9 +19,7 @@
         </div>
     </div>
 </section>
-<!-- End:: Banner Section -->
 
-<!-- Begin:: Products Section -->
 <section class="shopPage">
     <div class="container">
         <div class="row">
