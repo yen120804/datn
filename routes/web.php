@@ -26,7 +26,7 @@ Route::get('/blog', [BlogController::class, 'blog'])->name('blog');
 Route::get('/package', [PackageController::class, 'package'])->name('package');
 Route::get('/products/{id}', [ProductsController::class, 'detail'])->name('detail');
 
-
+//cart
 Route::middleware(['auth'])->group(function () {
     Route::get('/cart', [CartController::class, 'cart'])->name('cart');
     Route::post('/cart/add/{id}', [CartController::class, 'addToCart'])->name('cart.add');
@@ -41,6 +41,11 @@ Route::post('/payment/process', [PaymentController::class, 'processPayment'])->n
 Route::get('/orders/{id}', [OrderController::class, 'show'])->name('show');
 Route::get('/showbill', [OrderController::class, 'showbill'])->name('showbill');
 
+//booking
+
+Route::get('/booking', [ServiceController::class, 'index'])->name('booking.index');
+Route::post('/select-package', [ServiceController::class, 'selectPackage'])->name('select.package');
+Route::post('/book-appointment', [BookingController::class, 'booking'])->name('book.appointment');
 
 //user
 Route::get('register', [UserController::class, 'showRegisterForm'])->name('register');
@@ -89,16 +94,10 @@ Route::put('/admin/category_sv/{id}', [AdminController::class, 'update_category_
 
 //order
 Route::get('/admin/order', [AdminController::class, 'order'])->name('order');
-Route::patch('/admin/order/{orderId}', [AdminController::class, 'updateStatus'])->name('updateStatus');
+Route::patch('/admin/order/{orderId}/status', [AdminController::class, 'updateStatus'])->name('admin.order.updateStatus');
 
 
-//booking
 
-
-// Route cho trang booking
-Route::get('/booking', [ServiceController::class, 'index'])->name('booking.index');
-Route::post('/select-package', [ServiceController::class, 'selectPackage'])->name('select.package');
-Route::post('/book-appointment', [BookingController::class, 'booking'])->name('book.appointment');
 
 
 

@@ -21,8 +21,17 @@ class OrderController extends Controller
         $user = auth()->user();
         $orders = Order::where('user_id', $user->id)->get(); // Lấy tất cả các đơn hàng của người dùng hiện tại
     
-        return view('showbill', compact('orders')); // Truyền collection các đơn hàng sang view showbill.blade.php
+        // Định nghĩa các trạng thái
+        $statuses = [
+            1 => 'Chờ xác nhận',
+            2 => 'Đang chuẩn bị hàng',
+            3 => 'Đang giao',
+            4 => 'Đã hoàn thành'
+        ];
+    
+        return view('showbill', compact('orders', 'statuses')); // Truyền collection các đơn hàng và trạng thái sang view showbill.blade.php
     }
+    
    
     
 }

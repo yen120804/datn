@@ -370,6 +370,31 @@ class AdminController extends Controller
 
     public function order()
     {
+        // Lấy danh sách đơn hàng phân trang, ví dụ: 10 đơn hàng mỗi trang
+        $orders = Order::orderBy('id', 'desc')->paginate(10);
+        
+        $statuses = [
+            1 => 'Chờ xác nhận',
+            2 => 'Đang chuẩn bị hàng',
+            3 => 'Đang được giao',
+            4 => 'Đơn hàng đã hoàn thành'
+        ];
+    
+        return view('admin.order', compact('orders', 'statuses'));
+    }
+    
+    
+    public function updateStatus(Request $request, $orderId)
+    {
+        // Tìm đơn hàng theo ID
+        $order = Order::findOrFail($orderId);
+    
+        // Increment status, ensure it doesn't exceed 4
+        if ($order->status < 4) {
+            $order->status++;
+            $order->save();
+        }
+    
         // Lấy danh sách đơn hàng và các trạng thái hiện có
         $orders = Order::orderBy('id', 'asc')->get();
         $statuses = [
@@ -378,23 +403,12 @@ class AdminController extends Controller
             3 => 'Đang được giao',
             4 => 'Đơn hàng đã hoàn thành'
         ];
-
-        return view('admin.order', compact('orders', 'statuses'));
+    
+        // Trả về cùng một view với danh sách đơn hàng và trạng thái mới
+        return view('admin.order', compact('orders', 'statuses'))->with('success', 'Trạng thái đơn hàng đã được cập nhật!');
     }
+    
 
-    // Hàm cập nhật trạng thái đơn hàng
-    public function updateStatus(Request $request, $orderId)
-    {
-        // Tìm đơn hàng theo ID
-        $order = Order::findOrFail($orderId);
-
-        // Cập nhật trạng thái
-        $order->status = $request->input('status');
-        $order->save();
-
-        // Chuyển hướng về trang đơn hàng với thông báo
-        return redirect()->route('admin.order')->with('success', 'Trạng thái đơn hàng đã được cập nhật!');
-    }
 
  }
 

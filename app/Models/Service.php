@@ -16,7 +16,7 @@ class Service extends Model
 
     public function category()
     {
-        return $this->belongsTo(CategoryService::class, 'category_id_sv'); // Định nghĩa quan hệ với model CategoryService
+        return $this->belongsTo(Category_service::class, 'category_id_sv'); // Định nghĩa quan hệ với model CategoryService
     }
     public function packages()
     {

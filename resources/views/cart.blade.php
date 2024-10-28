@@ -149,7 +149,7 @@
                                     <input type="hidden" name="price[]" value="{{ $item->product->price }}">
                                     <input type="hidden" name="quantity[]" value="{{ $item->quantity }}">
                                 @endforeach
-                                <button type="submit" class="btn ">THANH TOÁN</button>
+                                <button type="submit" class="btn btn-danger">THANH TOÁN</button>
                             </form>
                         </div>
                     </div>

@@ -24,17 +24,19 @@ class CheckoutController extends Controller
 
         return view('create', compact('cartItems'));
     }
-        public function store(Request $request)
+    public function store(Request $request)
     {
         // Tạo đơn hàng mới
         $order = new Order();
-        $order->user_id = Auth::id(); // Hoặc lấy thông tin khách hàng từ request nếu cần
-        $order->madh = 'LS'.Str::random(5);; // Hoặc lấy thông tin khách hàng từ request nếu cần
+        $order->user_id = Auth::id(); // Lấy thông tin người dùng đang đăng nhập
+        $order->madh = 'LS' . Str::random(5); // Mã đơn hàng ngẫu nhiên
         $order->total = 0; // Khởi tạo tổng số tiền của đơn hàng
         $order->name = $request->input('name'); // Thêm giá trị mẫu cho trường name
-        $order->email =  $request->input('email'); // Thay 'example@example.com' bằng email thực tế
-        $order->phone =  $request->input('phone');
-        $order->address =  $request->input('address'); // Thay '123 Đường ABC' bằng địa chỉ thực tế
+        $order->email = $request->input('email'); // Email người đặt hàng
+        $order->phone = $request->input('phone');
+        $order->address = $request->input('address'); // Địa chỉ người đặt hàng
+        $order->status = 1; // Gán trạng thái mặc định là "Chờ xác nhận"
+    
         if ($order->save()) {
             $totalAmount = 0;
             // Lấy các mục trong giỏ hàng của người dùng
@@ -47,21 +49,22 @@ class CheckoutController extends Controller
                 $orderItem->price = $cartItem->product->price;
                 $orderItem->quantity = $cartItem->quantity;
                 $orderItem->save();
-
+    
                 // Cập nhật tổng số tiền của đơn hàng
                 $totalAmount += $cartItem->product->price * $cartItem->quantity;
-
+    
                 // Xóa mục trong giỏ hàng sau khi chuyển sang đơn hàng
                 $cartItem->delete();
             }
             // Cập nhật tổng số tiền cho đơn hàng
             $order->total = $totalAmount;
             $order->save();
-
+    
             return redirect()->route('show', [$order->id])->with('success', 'Đã thanh toán thành công!');
         }
-
+    
         return redirect()->route('cart')->with('error', 'Đã xảy ra lỗi trong quá trình thanh toán!');
     }
+    
 
 }

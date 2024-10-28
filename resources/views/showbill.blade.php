@@ -38,31 +38,27 @@
                                 <th>Đơn giá </th>
                                 <th>Trạng Thái </th>
                                 <th>Thêm </th>
-
                             </tr>
                         </thead>
                         <tbody>
-                            <!-- Dòng này bạn có thể lặp qua từng sản phẩm trong giỏ hàng để hiển thị -->
                             <tr>
                                 <td>#{{ $order->madh }}</td>
                                 <td>{{ $order->name }}</td>
-                                <td> {{ $order->address }}</td>
+                                <td>{{ $order->address }}</td>
                                 <td>{{ $order->created_at->format('d-m-Y') }}</td>
                                 <td>{{ number_format($order->total_amount, 0, ',', '.') }}</td>
                                 <td>
-
-                                    @if ($order->status == 'pending')
-                                        <p style="color:red">Chờ xác nhận</p>
+                                    @if (array_key_exists($order->status, $statuses))
+                                        <p style="color:red">{{ $statuses[$order->status] }}</p>
                                     @else
-                                        {{ $order->status }}
+                                        <p style="color:red">Trạng thái không xác định</p>
                                     @endif
-
-                                    <button type="button" class="btn btn-danger">Huỷ Đơn Hàng</button>
-
+                                    
                                 </td>
                                 <td>
-                                    <a href="{{route('show', ['id' => $order->id])}}"><button type="button"
-                                            class="btn btn-light">Chi tiết</button></a>
+                                    <a href="{{ route('show', ['id' => $order->id]) }}">
+                                        <button type="button" class="btn btn-light">Chi tiết</button>
+                                    </a>
                                 </td>
                             </tr>
                         </tbody>
@@ -70,10 +66,6 @@
                 </div>
             </div>
         @endforeach
-
-
-
     </div>
 </div>
-
 @endsection
