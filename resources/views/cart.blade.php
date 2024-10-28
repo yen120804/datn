@@ -8,8 +8,8 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-5 offset-lg-1">
-                <h2 class="banner-title">Cart</h2>
-                <p class="breadcrumbs"><a href="index.html">Home</a><span>/</span>Cart</p>
+                <h2 class="banner-title">Giỏ hàng</h2>
+                <p class="breadcrumbs"><a href="{{ route('home') }}">Home</a><span>/</span>Cart</p>
             </div>
             <div class="col-lg-6 animated pnl">
                 <div class="page_layer">
@@ -103,14 +103,13 @@
                                         <tr>
                                             <td colspan="6" class="actions">
                                                 <div class="coupon">
-                                                    <label for="coupon_code">Coupon:</label>
+                                                    <label for="coupon_code">Mã giảm giá:</label>
                                                     <input type="text" name="coupon_code" class="input-text" id="coupon_code"
-                                                        value="" placeholder="Coupon code">
+                                                        value="" placeholder="Mã giảm giá">
                                                     <button type="submit" class="button" name="apply_coupon"
-                                                        value="Apply coupon">Apply coupon</button>
+                                                        value="Apply coupon">Áp dụng mã</button>
                                                 </div>
-                                                <button type="submit" class="button update" name="update_cart"
-                                                    value="Update cart">Update cart</button>
+                                                
                                             </td>
                                         </tr>
                                     @endforeach

@@ -6,8 +6,8 @@
     <div class="container mt-4">
         <div class="row">
             <h2>Danh Sách Sản Phẩm</h2>
-            <table>
-                <thead>
+            <table class="table table-striped table-bordered" style="border-radius: 10px; overflow: hidden;">
+                <thead class="table" style="background-color: #ffe0e0;">
                     <tr>
                         <th>ID</th>
                         <th>Mã đơn hàng</th>

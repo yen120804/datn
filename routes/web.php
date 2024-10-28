@@ -13,6 +13,7 @@ use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\DetailController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\OrderController;
 use Illuminate\Support\Facades\Route;
 
 // ========================== HOME =============================
@@ -23,15 +24,9 @@ Route::get('/about', [AboutController::class, 'about'])->name('about');
 Route::get('/contact', [ContactController::class, 'contact'])->name('contact');
 Route::get('/blog', [BlogController::class, 'blog'])->name('blog');
 Route::get('/package', [PackageController::class, 'package'])->name('package');
-Route::get('/detail', [DetailController::class, 'detail'])->name('detail');
+Route::get('/products/{id}', [ProductsController::class, 'detail'])->name('detail');
 
-//cart
-// Route::middleware(['auth'])->group(function () {
-//     Route::get('/cart', [CartController::class, 'cart'])->name('cart');
-//     Route::post('/cart/add/{id}', [CartController::class, 'addToCart'])->name('cart.add');
-//     Route::patch('/cart/update/{id}', [CartController::class, 'updateCart'])->name('cart.update');
-//     Route::delete('/cart/remove/{id}', [CartController::class, 'removeFromCart'])->name('cart.remove');
-// });
+
 Route::middleware(['auth'])->group(function () {
     Route::get('/cart', [CartController::class, 'cart'])->name('cart');
     Route::post('/cart/add/{id}', [CartController::class, 'addToCart'])->name('cart.add');
@@ -43,6 +38,8 @@ Route::middleware(['auth'])->group(function () {
 Route::get('/checkout', [CheckoutController::class, 'create'])->name('checkout.create');
 Route::post('/checkout', [CheckoutController::class, 'store'])->name('checkout.store');
 Route::post('/payment/process', [PaymentController::class, 'processPayment'])->name('payment.process');
+Route::get('/orders/{id}', [OrderController::class, 'show'])->name('show');
+Route::get('/showbill', [OrderController::class, 'showbill'])->name('showbill');
 
 
 //user
@@ -51,7 +48,9 @@ Route::post('register', [UserController::class, 'register']);
 Route::get('login', [UserController::class, 'showLoginForm'])->name('login');
 Route::post('login', [UserController::class, 'login']);
 Route::post('logout', [UserController::class, 'logout'])->name('logout');
-// Route::get('/forgot', [UserController::class, 'forgot'])->name('forgot');
+Route::get('/profile', [UserController::class, 'profile'])->name('profile');
+Route::get('/profile/edit/{id}', [UserController::class, 'edit_profile'])->name('edit_profile');
+Route::put('/profile/update/{id}', [UserController::class, 'update_profile'])->name('update_profile');
 
 // ========================== ADMIN =============================
 Route::get('/admin', [AdminController::class, 'admin'])->name('admin');

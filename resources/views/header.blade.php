@@ -29,7 +29,7 @@
                             <ul class="sub-menu">
                                 <li><a href="{{ route('products') }}">Sản phẩm</a></li>
                                 <li><a href="{{ route('cart') }}">Giỏ hàng</a></li>
-                                <li><a href="">Hóa đơn</a></li>
+                                <li><a href="{{ route('showbill') }}">Hóa đơn</a></li>
                                 <li><a href="{{ route('login') }}">Tài khoản</a></li>
 
                             </ul>
@@ -60,7 +60,7 @@
         <div class="center_align">
             <div class="about_widget_area">
                 <div class="wd_logo">
-                    <a href="index.html"><img src="makeover/images/logo.png" alt="makeover" /></a>
+                    <a href="{{ route('home') }}"><img src="makeover/images/logo.png" alt="makeover" /></a>
                 </div>
                 @guest
                     <!-- Hiển thị khi người dùng chưa đăng nhập -->
@@ -78,8 +78,8 @@
                                                 class="text-primary">{{ Auth::user()->name }}</span></a></li>
                                     <li class="user-info-item"><a class="nav-link" href="#">Email: <br><span
                                                 class="text-primary">{{ Auth::user()->email }}</span></a></li>
-                                    <li class="user-info-item"><a class="nav-link" href="#">Thông tin cá nhân</a></li>
-                                    <li class="user-info-item"><a class="nav-link" href="#">Xem đơn hàng</a></li>
+                                    <li class="user-info-item"><a class="nav-link" href="{{ route('profile') }}">Thông tin cá nhân</a></li>
+                                    <li class="user-info-item"><a class="nav-link" href="{{ route('showbill') }}">Xem đơn hàng</a></li>
                                     <li class="user-info-item"><a class="nav-link" href="#">Đổi mật khẩu</a></li>
                                     <li class="user-info-item">
                                         <form action="{{ route('logout') }}" method="POST">
