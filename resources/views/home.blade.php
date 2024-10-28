@@ -55,7 +55,7 @@
                             data-frames='[{"delay":1700,"speed":400,"frame":"0","from":"y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;","mask":"x:0px;y:[100%];s:inherit;e:inherit;","to":"o:1;","ease":"power2.inOut"},{"delay":"wait","speed":300,"frame":"999","to":"auto:auto;","ease":"power3.inOut"}]'
                             data-textAlign="['left', 'left', 'center', 'center']" data-paddingtop="[0,0,0,0]"
                             data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[80,50,0,0]">
-                            <a href="booking.html" class="mo_btn mob_lg"><i class="icofont-cart-alt"></i>Đặt lịch
+                            <a href="{{ route('booking.index') }}" class="mo_btn mob_lg"><i class="icofont-cart-alt"></i>Đặt lịch
                                 hẹn</a>
                         </div>
                         <div class="tp-caption d-md-none d-sm-none d-xs-none d-lg-block"
@@ -113,7 +113,7 @@
                             Liệu trình tự nhiên giúp tái tạo và nuôi dưỡng làn da <br> từ sâu bên trong.
                         </p>
 
-                        <a href="shop.html" class="mo_btn"><i class="icofont-cart-alt"></i>Xem sản phẩm</a>
+                        <a href="{{ route('booking.index') }}" class="mo_btn"><i class="icofont-cart-alt"></i>Đặt lịch hẹn</a>
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -123,7 +123,7 @@
                         <p>
                             Làm sạch da đầu, giảm căng thẳng và <br />nuôi dưỡng tóc mềm mượt tự nhiên
                         </p>
-                        <a href="shop2.html" class="mo_btn"><i class="icofont-cart-alt"></i>Xem sản phẩm</a>
+                        <a href="{{ route('booking.index') }}" class="mo_btn"><i class="icofont-cart-alt"></i>Đặt lịch hẹn</a>
                     </div>
                 </div>
             </div>
@@ -172,7 +172,7 @@
                             móng hoàn hảo, từ cắt tỉa, dưỡng móng cho đến trang trí và sơn gel chuyên nghiệp. Hãy tận
                             hưởng dịch vụ chăm sóc đặc biệt, mang đến sự thư giãn và phong cách cá nhân độc đáo cho bạn.
                         </p>
-                        <a href="about.html" class="mo_btn mob_lg mob_shadow"><i
+                        <a href="{{ route('about') }}" class="mo_btn mob_lg mob_shadow"><i
                                 class="icofont-long-arrow-right"></i>Tìm hiểu thêm</a>
                     </div>
                 </div>
@@ -310,7 +310,7 @@
                                     <h3>Đặt lịch hẹn</h3>
                                     <p>Chúng tôi cam kết mang đến sự chăm sóc tận tình, giúp khách hàng cảm thấy thư
                                         giãn và hài lòng trong mỗi dịch vụ.</p>
-                                    <form action="#" method="post" class="row">
+                                    <form action="{{ route('booking.index') }}" method="get" class="row">
                                         <div class="input-field col-lg-6">
                                             <input type="text" name="name" placeholder="Tên
                                             " />
@@ -723,7 +723,7 @@
     <!-- End:: Blog Section -->
 
     <!-- Begin:: Instagram Section -->
-    <div class="my_instagram">
+    <!-- <div class="my_instagram">
         <a href="makeover/images/instagram/1.jpg" data-rel="lightcase:myCollection:slideshow" class="popup_img"><img
                 src="makeover/images/instagram/1.jpg" alt="instagram"></a>
         <a href="makeover/images/instagram/2.jpg" data-rel="lightcase:myCollection:slideshow" class="popup_img"><img
@@ -736,7 +736,7 @@
                 src="makeover/images/instagram/5.jpg" alt="instagram"></a>
         <a href="makeover/images/instagram/6.jpg" data-rel="lightcase:myCollection:slideshow" class="popup_img"><img
                 src="makeover/images/instagram/6.jpg" alt="instagram"></a>
-    </div>
+    </div> -->
     <!-- End:: Instagram Section -->
 
 @endsection
